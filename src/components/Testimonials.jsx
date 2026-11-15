@@ -1,0 +1,188 @@
+import { useRef } from 'react'
+import { useScrollAnimation } from '../hooks/useScrollAnimation'
+
+const TestimonialCard = ({ testimonial, delay = 0 }) => {
+  return (
+    <div
+      className="bg-brand-muted border border-white/10 rounded-2xl p-6 min-w-[320px] max-w-[320px] flex flex-col justify-between hover:border-[#6d1e17]/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      {/* Quote Icon */}
+      <div className="mb-5">
+        <svg
+          className="w-9 h-9 text-[#6d1e17]"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path d="M7.17 6A5.001 5.001 0 002 11v7h8v-7H6.09A3.001 3.001 0 019 8V6H7.17zm10 0A5.001 5.001 0 0012 11v7h8v-7h-3.91A3.001 3.001 0 0119 8V6h-1.83z" />
+        </svg>
+      </div>
+
+      {/* Quote */}
+      <p className="text-gray-200 leading-relaxed text-[15px] flex-1">
+        "{testimonial.quote}"
+      </p>
+
+      {/* Footer */}
+      <div className="mt-6 pt-4 border-t border-white/10">
+        <h4 className="font-semibold text-white text-sm">
+          {testimonial.name}
+        </h4>
+
+        <p className="text-gray-400 text-sm mt-1">
+          {testimonial.role}
+        </p>
+      </div>
+    </div>
+  )
+}
+const Testimonials = () => {
+  const scrollRef = useRef(null)
+  const [sectionRef, isVisible] = useScrollAnimation()
+
+  const testimonials = [
+    {
+      id: 1,
+      name: 'CEO, BOD GROUP',
+      role: 'Canada',
+      quote: 'Billeddy Saliu is one of the razor sharp closer I have got to work with that delivered the most exceptional closing outcome weekly.',
+    },
+    {
+      id: 2,
+      name: 'Paris Calvin',
+      role: 'United States',
+      quote: 'Billeddy is the guy for you when your deal is close to a dead end and you want a closer resurrect it without destroying it totally.',
+    },
+    {
+      id: 3,
+      name: 'CEO, Palm Beach Realty',
+      role: 'United States',
+      quote: 'The highest 6 figure property my company sold in 2025 was only possible because Billeddy was on the call with the company sales lead and the clients. He is an amazing guy.',
+    },
+    {
+      id: 4,
+      name: 'Founder, Cury Group',
+      role: 'London',
+      quote: 'If you have a good investment offer and you want an investor to buy in, Billeddy is your guy.',
+    },
+    {
+      id: 5,
+      name: 'Real Estate Developer Client',
+      role: 'Q2 2025',
+      quote: 'Closed $880,000 in high ticket deals in one quarter.',
+    },
+    {
+      id: 6,
+      name: 'Agency Owner',
+      role: 'Outbound Pipeline',
+      quote: 'Generated $54,000 in commission from a single agency pipeline in 3 months.',
+    },
+  ]
+
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      const scrollAmount = 320
+      scrollRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth',
+      })
+    }
+  }
+
+  return (
+    <section ref={sectionRef} className="w-full py-16 md:py-20 bg-brand-muted">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-10">
+          <div className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-2">
+              Proof From the Field
+            </h2>
+            <p className="text-gray-400 text-sm">
+              Outcomes from clients across coaching, real estate, agencies, and consulting.
+            </p>
+          </div>
+          <a
+            href="https://wa.me/2347069487679?text=Hi%20Billeddy,%20I'm%20interested%20in%20working%20with%20you%20for%20high%20ticket%20closing%20services."
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`inline-flex items-center gap-2 bg-[#6d1e17] text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-brand-accent hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 mt-4 md:mt-0 w-fit group ${
+              isVisible ? 'opacity-100 translate-y-0 delay-200' : 'opacity-0 translate-y-8'
+            }`}
+          >
+            Apply to Work With Me
+            <span className="w-5 h-5 bg-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+              <svg
+                className="w-3 h-3 text-[#6d1e17] group-hover:translate-x-0.5 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </span>
+          </a>
+        </div>
+
+        {/* Testimonials Grid - Horizontal Scroll */}
+        <div className={`relative transition-all duration-700 delay-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+          {/* Scroll Buttons */}
+          <button
+            onClick={() => scroll('left')}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-10 h-10 bg-brand-muted rounded-full shadow-lg hidden md:flex items-center justify-center hover:bg-white/10 hover:scale-110 active:scale-95 transition-all duration-200"
+          >
+            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button
+            onClick={() => scroll('right')}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-10 h-10 bg-brand-muted rounded-full shadow-lg hidden md:flex items-center justify-center hover:bg-white/10 hover:scale-110 active:scale-95 transition-all duration-200"
+          >
+            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+
+          {/* Scrollable Container */}
+          <div
+            ref={scrollRef}
+            className="flex gap-4 overflow-x-auto scrollbar-hide pb-4 snap-x snap-mandatory"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {/* Masonry-like staggered layout using flex columns */}
+            <div className="flex gap-4">
+              {/* Column 1 */}
+              <div className="flex flex-col gap-4">
+                <TestimonialCard testimonial={testimonials[0]} />
+                <TestimonialCard testimonial={testimonials[1]} />
+              </div>
+              {/* Column 2 */}
+              <div className="flex flex-col gap-4 mt-8">
+                <TestimonialCard testimonial={testimonials[2]} />
+                <TestimonialCard testimonial={testimonials[3]} />
+              </div>
+              {/* Column 3 */}
+              <div className="flex flex-col gap-4">
+                <TestimonialCard testimonial={testimonials[4]} />
+                <TestimonialCard testimonial={testimonials[5]} />
+              </div>
+              {/* Column 4 - Repeat for continuous scroll */}
+              <div className="flex flex-col gap-4 mt-8">
+                <TestimonialCard testimonial={testimonials[0]} />
+                <TestimonialCard testimonial={testimonials[1]} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export default Testimonials

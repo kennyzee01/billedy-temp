@@ -1,0 +1,168 @@
+import { Link } from 'react-router-dom'
+import { useScrollAnimation } from '../hooks/useScrollAnimation'
+import redLogo from '../assets/redLogo.png'
+
+const Footer = () => {
+  const [footerRef, isVisible] = useScrollAnimation()
+
+  const navLinks = [
+    { name: 'Home', href: '/' },
+    { name: 'Closing Services', href: '/high-ticket-closing' },
+    { name: 'Coaching', href: '/coaching' },
+  ]
+
+  const navLinks2 = [
+    { name: 'Consulting', href: '/consulting' },
+    { name: 'Books', href: '/books' },
+  ]
+
+  const socialIcons = [
+    {
+      name: 'Instagram',
+      href: 'https://www.instagram.com/billeddy.saliu?igsh=NGh6dm5taTQ0Yzd0&utm_source=qr',
+      path: 'M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z',
+    },
+    {
+      name: 'Facebook',
+      href: 'https://www.facebook.com/share/1Ezy7n4bgi/?mibextid=wwXIfr',
+      path: 'M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z',
+    },
+    {
+      name: 'TikTok',
+      href: 'https://www.tiktok.com/@billeddysaliu?_r=1&_t=ZS-92eZTem2xYy',
+      path: 'M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6c0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64c0 3.33 2.76 5.7 5.69 5.7c3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z',
+    },
+    {
+      name: 'YouTube',
+      href: 'https://www.youtube.com/@billeddysaliu',
+      path: 'M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z',
+    },
+  ]
+
+  return (
+    <footer ref={footerRef} className="w-full bg-brand-muted">
+      {/* Main Footer */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-14 md:py-18">
+        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-12 md:gap-8">
+          {/* Logo, Tagline & Social */}
+          <div
+            className={`max-w-sm transition-all duration-700 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+          >
+            <Link
+              to="/"
+              className="mb-4 inline-block transition-transform duration-200 hover:scale-105"
+              aria-label="Billeddy home"
+            >
+              <img src={redLogo} alt="Billeddy Saliu" className="h-12 md:h-14 w-auto" />
+            </Link>
+            <p className="text-gray-400 text-sm leading-relaxed mt-1 mb-5">
+              High ticket closing and revenue partnership for businesses that already have the offer and the leads dialed in.
+            </p>
+            <div className="flex items-center gap-3">
+              {socialIcons.map((icon, index) => (
+                <a
+                  key={icon.name}
+                  href={icon.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={icon.name}
+                  className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-gray-400 hover:border-brand-primary hover:text-white hover:bg-brand-primary transition-all duration-300 hover:scale-110 hover:-translate-y-1"
+                  style={{ transitionDelay: `${index * 50}ms` }}
+                >
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d={icon.path} />
+                  </svg>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Nav Link Columns */}
+          <div className="flex gap-16 lg:gap-24">
+            {/* Nav Links Column 1 */}
+            <div
+              className={`transition-all duration-700 delay-100 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+            >
+              <p className="text-white text-xs font-semibold tracking-wide uppercase mb-4">Explore</p>
+              <ul className="space-y-3">
+                {navLinks.map((link, index) => (
+                  <li key={link.name} style={{ transitionDelay: `${150 + index * 50}ms` }}>
+                    <Link
+                      to={link.href}
+                      className="text-gray-300 text-sm hover:text-brand-primary-light transition-all duration-300 hover:translate-x-1 inline-block"
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Nav Links Column 2 */}
+            <div
+              className={`transition-all duration-700 delay-200 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+            >
+              <p className="text-white text-xs font-semibold tracking-wide uppercase mb-4">Resources</p>
+              <ul className="space-y-3">
+                {navLinks2.map((link, index) => (
+                  <li key={link.name} style={{ transitionDelay: `${200 + index * 50}ms` }}>
+                    <Link
+                      to={link.href}
+                      className="text-gray-300 text-sm hover:text-brand-primary-light transition-all duration-300 hover:translate-x-1 inline-block"
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Bar (Copyright + Policies + Credit) */}
+      <div className="bg-brand-muted border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-4">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-xs text-white/80">
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-6 gap-y-2">
+              <span>©copyright 2025</span>
+              <Link
+                to="/privacy-policy"
+                className="hover:text-white transition-colors duration-300 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-px after:bg-white/80 after:transition-all after:duration-300 hover:after:w-full"
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                to="/terms"
+                className="hover:text-white transition-colors duration-300 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-px after:bg-white/80 after:transition-all after:duration-300 hover:after:w-full"
+              >
+                Terms & Conditions
+              </Link>
+              <span>All rights reserved.</span>
+            </div>
+
+            <p className="text-center md:text-right">
+              Built by{' '}
+              <a
+                href="https://joshuaoseghale.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-white hover:underline hover:text-white transition-colors duration-300"
+              >
+                Joshua Oseghale
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  )
+}
+
+export default Footer
